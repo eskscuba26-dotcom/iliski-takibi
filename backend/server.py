@@ -108,13 +108,18 @@ async def get_start_date():
     if not data:
         # Default start date: 25 Ocak 2025 20:30 (Turkey timezone)
         default_date = "2025-01-25T20:30:00+03:00"
+        default_image = "https://customer-assets.emergentagent.com/job_e4db3706-e757-48e7-9549-6099030dfeac/artifacts/j9t0hd5t_20250920_205107.jpg"
         await db.relationship.insert_one({
             "start_date": default_date,
+            "main_photo": default_image,
             "created_at": datetime.utcnow()
         })
-        return {"start_date": default_date}
+        return {"start_date": default_date, "main_photo": default_image}
     
-    return {"start_date": data["start_date"]}
+    return {
+        "start_date": data.get("start_date"),
+        "main_photo": data.get("main_photo", "")
+    }
 
 
 @api_router.post("/start-date")
@@ -128,6 +133,40 @@ async def set_start_date(date_data: RelationshipStart):
     })
     
     return {"start_date": date_data.start_date}
+
+
+@api_router.post("/main-photo")
+async def update_main_photo(photo_data: PhotoUpload):
+    """Update the main couple photo"""
+    data = await db.relationship.find_one()
+    
+    if data:
+        await db.relationship.update_one(
+            {"_id": data["_id"]},
+            {"$set": {"main_photo": photo_data.image_base64}}
+        )
+    else:
+        # Create new entry with default date
+        await db.relationship.insert_one({
+            "start_date": "2025-01-25T20:30:00+03:00",
+            "main_photo": photo_data.image_base64,
+            "created_at": datetime.utcnow()
+        })
+    
+    return {"message": "Main photo updated successfully"}
+
+
+@api_router.get("/main-photo")
+async def get_main_photo():
+    """Get the main couple photo"""
+    data = await db.relationship.find_one()
+    
+    if not data or "main_photo" not in data:
+        # Return default photo
+        default_image = "https://customer-assets.emergentagent.com/job_e4db3706-e757-48e7-9549-6099030dfeac/artifacts/j9t0hd5t_20250920_205107.jpg"
+        return {"main_photo": default_image}
+    
+    return {"main_photo": data["main_photo"]}
 
 
 # Include the router in the main app
