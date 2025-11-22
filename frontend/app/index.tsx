@@ -466,23 +466,23 @@ const styles = StyleSheet.create({
   },
   widgetTimeContainer: {
     flex: 1,
-    paddingHorizontal: 20,
-  },
-  widgetTimeRow: {
     flexDirection: 'row',
+    justifyContent: 'space-around',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    marginVertical: 4,
+    paddingHorizontal: 10,
+  },
+  widgetTimeBlock: {
+    alignItems: 'center',
   },
   widgetTimeNumber: {
-    fontSize: 32,
+    fontSize: 24,
     fontWeight: 'bold',
     color: '#FFF',
-    minWidth: 60,
   },
   widgetTimeLabel: {
-    fontSize: 14,
+    fontSize: 10,
     color: '#999',
+    marginTop: 2,
   },
   widgetAddButton: {
     width: 70,
