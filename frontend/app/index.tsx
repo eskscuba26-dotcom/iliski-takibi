@@ -363,11 +363,29 @@ export default function Index() {
       >
         {/* Couple Photo */}
         <View style={styles.photoContainer}>
-          <Image
-            source={{ uri: 'https://customer-assets.emergentagent.com/job_e4db3706-e757-48e7-9549-6099030dfeac/artifacts/j9t0hd5t_20250920_205107.jpg' }}
-            style={styles.couplePhoto}
-            resizeMode="cover"
-          />
+          <TouchableOpacity
+            style={styles.mainPhotoWrapper}
+            onPress={changeMainPhoto}
+            disabled={uploading}
+          >
+            {mainPhoto ? (
+              <Image
+                source={{ uri: mainPhoto }}
+                style={styles.couplePhoto}
+                resizeMode="cover"
+              />
+            ) : (
+              <View style={styles.photoPlaceholder}>
+                <Ionicons name="camera" size={48} color="#999" />
+                <Text style={styles.placeholderText}>
+                  Ana fotoğrafı eklemek için tıklayın
+                </Text>
+              </View>
+            )}
+            <View style={styles.photoEditBadge}>
+              <Ionicons name="pencil" size={16} color="#FFF" />
+            </View>
+          </TouchableOpacity>
         </View>
 
         {/* Time Counter - Order: Minute, Hour, Day, Month, Year */}
