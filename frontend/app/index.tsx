@@ -245,14 +245,17 @@ export default function Index() {
     );
   }
 
+  // Calculate total days
+  const totalDays = Math.floor((new Date().getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
+
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
       
-      {/* Header with gradient background */}
+      {/* Compact Header */}
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>❤️ Birlikte Geçirdiğimiz Zaman</Text>
-        <Text style={styles.startDate}>25 Ocak 2025, 20:30</Text>
+        <Text style={styles.appName}>Sevgi Saati</Text>
+        <Text style={styles.subtitle}>25 Ocak 2025, 20:30</Text>
       </View>
 
       <ScrollView
@@ -260,7 +263,14 @@ export default function Index() {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {/* Time Counter */}
+        {/* Total Days Display */}
+        <View style={styles.totalDaysContainer}>
+          <Ionicons name="heart" size={32} color="#FF1493" />
+          <Text style={styles.totalDaysNumber}>{totalDays}</Text>
+          <Text style={styles.totalDaysLabel}>Gün Birlikte</Text>
+        </View>
+
+        {/* Compact Time Counter */}
         <View style={styles.counterContainer}>
           <View style={styles.counterCard}>
             {timeElapsed.years > 0 && (
