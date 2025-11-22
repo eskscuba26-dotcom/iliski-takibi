@@ -1,0 +1,49 @@
+═══════════════════════════════════════════════════════
+    İLİŞKİ TAKİBİ - GITHUB YÜKLEME REHBERİ
+═══════════════════════════════════════════════════════
+
+1. ZIP DOSYASINI İNDİR:
+   https://first-meet-tracker.preview.emergentagent.com/iliski-takibi-app.zip
+   (Bu linki tarayıcıda açın ve ZIP'i indirin)
+
+2. ZIP'İ AÇIN:
+   - İndirdiğiniz ZIP dosyasına sağ tıklayın
+   - "Tümünü ayıkla" veya "Extract here" seçin
+   - İçinde "frontend" ve "backend" klasörleri göreceksiniz
+
+3. GITHUB'A GİDİN:
+   https://github.com/eskscuba26/iliski-takibi
+
+4. DOSYALARI YÜKLE:
+   - "Add file" butonuna tıklayın
+   - "Upload files" seçin
+   - "frontend" ve "backend" klasörlerini sürükleyip bırakın
+   - "Commit changes" butonuna tıklayın
+
+5. EXPO.DEV'E GİDİN:
+   https://expo.dev
+   - Login: eskscuba26@gmail.com
+   - Şifre: 658120DOa.
+
+6. BUILD BAŞLAT:
+   - "Projects" tıklayın
+   - "Create a project" tıklayın
+   - "Import from GitHub" seçin
+   - "eskscuba26/iliski-takibi" seçin
+   - "Builds" sekmesine gidin
+   - "Create a build" tıklayın
+   - Platform: Android
+   - Profile: preview
+   - "Start build" tıklayın
+
+7. 15-20 DAKİKA SONRA:
+   - "Download" butonu çıkacak
+   - APK'yı indirin
+   - Telefonunuza atın ve yükleyin!
+
+TAMAMLANDIĞINDA:
+✅ Ana ekranınızda "İlişki Takibi" uygulaması olacak
+✅ Gerçek mobil uygulama olarak çalışacak
+✅ İnternet değil, uygulama!
+
+═══════════════════════════════════════════════════════
