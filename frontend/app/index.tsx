@@ -349,46 +349,51 @@ export default function Index() {
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
-      
-      {/* Simple Header */}
-      <View style={styles.header}>
-        <Text style={styles.appName}>Sevgi Saati</Text>
-        <Text style={styles.subtitle}>25 Ocak 2025, 20:30</Text>
-      </View>
 
       <ScrollView
         style={styles.scrollView}
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {/* Couple Photo */}
-        <View style={styles.photoContainer}>
+        {/* Main Content - Photo Left, Add Button Right */}
+        <View style={styles.mainContent}>
+          {/* Left Side - Photo */}
           <TouchableOpacity
-            style={styles.mainPhotoWrapper}
+            style={styles.photoSection}
             onPress={changeMainPhoto}
             disabled={uploading}
           >
             {mainPhoto ? (
               <Image
                 source={{ uri: mainPhoto }}
-                style={styles.couplePhoto}
+                style={styles.mainPhoto}
                 resizeMode="cover"
               />
             ) : (
               <View style={styles.photoPlaceholder}>
-                <Ionicons name="camera" size={48} color="#999" />
-                <Text style={styles.placeholderText}>
-                  Ana fotoğrafı eklemek için tıklayın
-                </Text>
+                <Ionicons name="camera" size={32} color="#999" />
               </View>
             )}
             <View style={styles.photoEditBadge}>
-              <Ionicons name="pencil" size={16} color="#FFF" />
+              <Ionicons name="pencil" size={12} color="#FFF" />
             </View>
+          </TouchableOpacity>
+
+          {/* Right Side - Add Memory Button */}
+          <TouchableOpacity
+            style={styles.addMemoryButton}
+            onPress={showImageOptions}
+            disabled={uploading}
+          >
+            {uploading ? (
+              <ActivityIndicator size="small" color="#FFF" />
+            ) : (
+              <Ionicons name="add" size={32} color="#FFF" />
+            )}
           </TouchableOpacity>
         </View>
 
-        {/* Time Counter - Order: Minute, Hour, Day, Month, Year */}
+        {/* Time Counter - Compact */}
         <View style={styles.counterContainer}>
           <View style={styles.counterCard}>
             <View style={styles.timeBlock}>
@@ -420,6 +425,7 @@ export default function Index() {
               </View>
             )}
           </View>
+          <Text style={styles.startDateText}>25 Ocak 2025, 20:30</Text>
         </View>
 
         {/* Photos Section */}
