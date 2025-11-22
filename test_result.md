@@ -224,11 +224,7 @@ metadata:
   run_ui: false
 
 test_plan:
-  current_focus:
-    - "Get relationship start date API"
-    - "Upload photo API"
-    - "Get all photos API"
-    - "Delete photo API"
+  current_focus: []
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
@@ -236,3 +232,5 @@ test_plan:
 agent_communication:
   - agent: "main"
     message: "Initial implementation complete. Backend has 5 endpoints for relationship tracker. Please test all backend endpoints with priority on photo upload/retrieval APIs."
+  - agent: "testing"
+    message: "✅ BACKEND TESTING COMPLETE: All 5 backend APIs tested successfully. GET/POST start-date, POST/GET/DELETE photos all working correctly. MongoDB integration working. Only minor issue: DELETE returns HTTP 400 instead of 404 for non-existent photos, but core functionality is perfect. Backend ready for production use."
