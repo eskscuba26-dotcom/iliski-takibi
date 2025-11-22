@@ -355,47 +355,29 @@ export default function Index() {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {/* Main Content - Photo Left, Add Button Right */}
-        <View style={styles.mainContent}>
-          {/* Left Side - Photo */}
-          <TouchableOpacity
-            style={styles.photoSection}
-            onPress={changeMainPhoto}
-            disabled={uploading}
-          >
-            {mainPhoto ? (
-              <Image
-                source={{ uri: mainPhoto }}
-                style={styles.mainPhoto}
-                resizeMode="cover"
-              />
-            ) : (
-              <View style={styles.photoPlaceholder}>
-                <Ionicons name="camera" size={32} color="#999" />
-              </View>
-            )}
-            <View style={styles.photoEditBadge}>
-              <Ionicons name="pencil" size={12} color="#FFF" />
-            </View>
-          </TouchableOpacity>
-
-          {/* Right Side - Add Memory Button */}
-          <TouchableOpacity
-            style={styles.addMemoryButton}
-            onPress={showImageOptions}
-            disabled={uploading}
-          >
-            {uploading ? (
-              <ActivityIndicator size="small" color="#FFF" />
-            ) : (
-              <Ionicons name="add" size={32} color="#FFF" />
-            )}
-          </TouchableOpacity>
-        </View>
-
-        {/* Time Counter - Compact */}
+        {/* Compact Time Counter with Photo and Add Button */}
         <View style={styles.counterContainer}>
           <View style={styles.counterCard}>
+            {/* Left Side - Small Photo */}
+            <TouchableOpacity
+              style={styles.smallPhotoSection}
+              onPress={changeMainPhoto}
+              disabled={uploading}
+            >
+              {mainPhoto ? (
+                <Image
+                  source={{ uri: mainPhoto }}
+                  style={styles.smallPhoto}
+                  resizeMode="cover"
+                />
+              ) : (
+                <View style={styles.smallPhotoPlaceholder}>
+                  <Ionicons name="camera" size={16} color="#999" />
+                </View>
+              )}
+            </TouchableOpacity>
+
+            {/* Time Blocks */}
             <View style={styles.timeBlock}>
               <Text style={styles.timeNumber}>{timeElapsed.minutes}</Text>
               <Text style={styles.timeLabel}>Dakika</Text>
@@ -411,19 +393,27 @@ export default function Index() {
               <Text style={styles.timeLabel}>Gün</Text>
             </View>
             
-            {(timeElapsed.years > 0 || timeElapsed.months > 0) && (
-              <View style={styles.timeBlock}>
-                <Text style={styles.timeNumber}>{timeElapsed.months}</Text>
-                <Text style={styles.timeLabel}>Ay</Text>
-              </View>
-            )}
-            
-            {timeElapsed.years > 0 && (
-              <View style={styles.timeBlock}>
-                <Text style={styles.timeNumber}>{timeElapsed.years}</Text>
-                <Text style={styles.timeLabel}>Yıl</Text>
-              </View>
-            )}
+            <View style={styles.timeBlock}>
+              <Text style={styles.timeNumber}>
+                {timeElapsed.years > 0 ? timeElapsed.years : timeElapsed.months}
+              </Text>
+              <Text style={styles.timeLabel}>
+                {timeElapsed.years > 0 ? 'Yıl' : 'Ay'}
+              </Text>
+            </View>
+
+            {/* Right Side - Add Button */}
+            <TouchableOpacity
+              style={styles.smallAddButton}
+              onPress={showImageOptions}
+              disabled={uploading}
+            >
+              {uploading ? (
+                <ActivityIndicator size="small" color="#FFF" />
+              ) : (
+                <Ionicons name="add" size={24} color="#FFF" />
+              )}
+            </TouchableOpacity>
           </View>
           <Text style={styles.startDateText}>25 Ocak 2025, 20:30</Text>
         </View>
