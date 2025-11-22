@@ -376,24 +376,30 @@ export default function Index() {
             )}
           </TouchableOpacity>
 
-          {/* Center - Time Display (Vertical) */}
+          {/* Center - Time Display (Horizontal) */}
           <View style={styles.widgetTimeContainer}>
-            <View style={styles.widgetTimeRow}>
+            <View style={styles.widgetTimeBlock}>
               <Text style={styles.widgetTimeNumber}>{timeElapsed.minutes}</Text>
               <Text style={styles.widgetTimeLabel}>Dakika</Text>
             </View>
-            <View style={styles.widgetTimeRow}>
+            <View style={styles.widgetTimeBlock}>
               <Text style={styles.widgetTimeNumber}>{timeElapsed.hours}</Text>
               <Text style={styles.widgetTimeLabel}>Saat</Text>
             </View>
-            <View style={styles.widgetTimeRow}>
-              <Text style={styles.widgetTimeNumber}>
-                {timeElapsed.years > 0 ? timeElapsed.years : timeElapsed.months}
-              </Text>
-              <Text style={styles.widgetTimeLabel}>
-                {timeElapsed.years > 0 ? 'Yıl' : 'Ay'}
-              </Text>
+            <View style={styles.widgetTimeBlock}>
+              <Text style={styles.widgetTimeNumber}>{timeElapsed.days}</Text>
+              <Text style={styles.widgetTimeLabel}>Gün</Text>
             </View>
+            <View style={styles.widgetTimeBlock}>
+              <Text style={styles.widgetTimeNumber}>{timeElapsed.months}</Text>
+              <Text style={styles.widgetTimeLabel}>Ay</Text>
+            </View>
+            {timeElapsed.years > 0 && (
+              <View style={styles.widgetTimeBlock}>
+                <Text style={styles.widgetTimeNumber}>{timeElapsed.years}</Text>
+                <Text style={styles.widgetTimeLabel}>Yıl</Text>
+              </View>
+            )}
           </View>
 
           {/* Right - Add Button */}
