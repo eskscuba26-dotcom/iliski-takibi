@@ -1,4 +1,4 @@
-# Sevgi Saati - APK Oluşturma Talimatları
+# İlişki Takibi - APK Oluşturma Talimatları
 
 ## Yöntem 1: Expo Go ile Test (En Kolay - Hızlı Test İçin)
 
