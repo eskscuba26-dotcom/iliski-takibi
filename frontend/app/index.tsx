@@ -45,7 +45,9 @@ export default function Index() {
     days: 0,
     hours: 0,
     minutes: 0,
+    seconds: 0,
   });
+  const lastHourRef = useRef<number>(-1);
 
   // Start date: 25 Ocak 2025 20:30 (Turkey time)
   const startDate = new Date('2025-01-25T20:30:00+03:00');
