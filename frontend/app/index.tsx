@@ -76,6 +76,19 @@ export default function Index() {
     });
   };
 
+  // Send daily notification
+  const sendDailyNotification = async () => {
+    await Notifications.scheduleNotificationAsync({
+      content: {
+        title: '💕 Seni Özledim',
+        body: 'Bir gün daha geçti... Her anın seninle daha güzel! ❤️',
+        sound: true,
+        vibrate: [0, 250, 250, 250],
+      },
+      trigger: null, // Send immediately
+    });
+  };
+
   // Calculate time elapsed
   const calculateTimeElapsed = () => {
     const now = new Date();
