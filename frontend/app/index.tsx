@@ -432,7 +432,7 @@ const styles = StyleSheet.create({
   },
   photosSection: {
     paddingHorizontal: 20,
-    paddingTop: 32,
+    paddingTop: 24,
   },
   photosSectionHeader: {
     flexDirection: 'row',
@@ -441,17 +441,22 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   photosTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#FFF',
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#2c3e50',
   },
   addButton: {
     width: 44,
     height: 44,
     borderRadius: 22,
-    backgroundColor: '#FF1493',
+    backgroundColor: '#3498db',
     justifyContent: 'center',
     alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 3,
   },
   emptyState: {
     alignItems: 'center',
@@ -459,12 +464,12 @@ const styles = StyleSheet.create({
   },
   emptyText: {
     fontSize: 16,
-    color: '#999',
+    color: '#7f8c8d',
     marginTop: 16,
   },
   emptySubtext: {
     fontSize: 14,
-    color: '#666',
+    color: '#95a5a6',
     marginTop: 8,
     textAlign: 'center',
   },
@@ -477,9 +482,9 @@ const styles = StyleSheet.create({
     width: (width - 48) / 2,
     height: (width - 48) / 2,
     margin: 4,
-    borderRadius: 12,
+    borderRadius: 8,
     overflow: 'hidden',
-    backgroundColor: '#1a1a1a',
+    backgroundColor: '#e0e0e0',
   },
   photoImage: {
     width: '100%',
