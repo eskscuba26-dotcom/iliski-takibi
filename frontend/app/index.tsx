@@ -52,6 +52,29 @@ export default function Index() {
   // Start date: 25 Ocak 2025 20:30 (Turkey time)
   const startDate = new Date('2025-01-25T20:30:00+03:00');
 
+  // Request notification permissions
+  useEffect(() => {
+    const requestPermissions = async () => {
+      const { status } = await Notifications.requestPermissionsAsync();
+      if (status !== 'granted') {
+        console.log('Notification permissions not granted');
+      }
+    };
+    requestPermissions();
+  }, []);
+
+  // Send hourly notification
+  const sendHeartNotification = async () => {
+    await Notifications.scheduleNotificationAsync({
+      content: {
+        title: '❤️ Bir Saat Daha Geçti',
+        body: 'Birlikte geçirdiğiniz her an değerli!',
+        sound: true,
+      },
+      trigger: null, // Send immediately
+    });
+  };
+
   // Calculate time elapsed
   const calculateTimeElapsed = () => {
     const now = new Date();
@@ -62,8 +85,14 @@ export default function Index() {
     let days = now.getDate() - startDate.getDate();
     let hours = now.getHours() - startDate.getHours();
     let minutes = now.getMinutes() - startDate.getMinutes();
+    let seconds = now.getSeconds() - startDate.getSeconds();
 
     // Adjust for negative values
+    if (seconds < 0) {
+      seconds += 60;
+      minutes -= 1;
+    }
+
     if (minutes < 0) {
       minutes += 60;
       hours -= 1;
@@ -85,21 +114,29 @@ export default function Index() {
       years -= 1;
     }
 
+    // Check if hour changed and send notification
+    const currentTotalHours = Math.floor((now.getTime() - startDate.getTime()) / (1000 * 60 * 60));
+    if (lastHourRef.current !== -1 && currentTotalHours > lastHourRef.current) {
+      sendHeartNotification();
+    }
+    lastHourRef.current = currentTotalHours;
+
     setTimeElapsed({
       years: years < 0 ? 0 : years,
       months: months < 0 ? 0 : months,
       days: days < 0 ? 0 : days,
       hours: hours < 0 ? 0 : hours,
       minutes: minutes < 0 ? 0 : minutes,
+      seconds: seconds < 0 ? 0 : seconds,
     });
   };
 
-  // Update timer every minute
+  // Update timer every second
   useEffect(() => {
     calculateTimeElapsed();
     const interval = setInterval(() => {
       calculateTimeElapsed();
-    }, 60000); // Update every minute
+    }, 1000); // Update every second
 
     return () => clearInterval(interval);
   }, []);
