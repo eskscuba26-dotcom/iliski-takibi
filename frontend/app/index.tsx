@@ -394,24 +394,22 @@ export default function Index() {
               <Text style={styles.widgetTimeNumber}>{timeElapsed.months}</Text>
               <Text style={styles.widgetTimeLabel}>Ay</Text>
             </View>
-            {timeElapsed.years > 0 && (
-              <View style={styles.widgetTimeBlock}>
-                <Text style={styles.widgetTimeNumber}>{timeElapsed.years}</Text>
-                <Text style={styles.widgetTimeLabel}>Yıl</Text>
-              </View>
-            )}
+            <View style={styles.widgetTimeBlock}>
+              <Text style={styles.widgetTimeNumber}>{timeElapsed.years}</Text>
+              <Text style={styles.widgetTimeLabel}>Yıl</Text>
+            </View>
           </View>
 
-          {/* Right - Add Button */}
+          {/* Right - Add Button (Small) */}
           <TouchableOpacity
             style={styles.widgetAddButton}
             onPress={showImageOptions}
             disabled={uploading}
           >
             {uploading ? (
-              <ActivityIndicator size="large" color="#FFF" />
+              <ActivityIndicator size="small" color="#999" />
             ) : (
-              <Ionicons name="add" size={40} color="#FFF" />
+              <Ionicons name="add" size={24} color="#999" />
             )}
           </TouchableOpacity>
         </View>
