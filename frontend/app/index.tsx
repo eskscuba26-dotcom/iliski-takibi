@@ -76,17 +76,30 @@ export default function Index() {
     });
   };
 
-  // Send daily notification
-  const sendDailyNotification = async () => {
+  // Show daily message on screen
+  const showDailyMessage = async () => {
+    // Play notification sound
     await Notifications.scheduleNotificationAsync({
       content: {
-        title: '💕 Seni Özledim',
-        body: 'Bir gün daha geçti... Her anın seninle daha güzel! ❤️',
+        title: '💕',
+        body: 'Mesaj var!',
         sound: true,
-        vibrate: [0, 250, 250, 250],
       },
-      trigger: null, // Send immediately
+      trigger: null,
     });
+
+    // Show alert on screen
+    Alert.alert(
+      '💕 Seni Özledim',
+      'Bir gün daha geçti... Her anın seninle daha güzel! ❤️',
+      [
+        {
+          text: 'Tamam ❤️',
+          style: 'default',
+        },
+      ],
+      { cancelable: true }
+    );
   };
 
   // Calculate time elapsed
