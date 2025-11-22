@@ -247,6 +247,84 @@ export default function Index() {
     );
   };
 
+  // Update main photo
+  const updateMainPhoto = async (base64: string) => {
+    setUploading(true);
+    try {
+      const response = await fetch(`${EXPO_PUBLIC_BACKEND_URL}/api/main-photo`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          image_base64: `data:image/jpeg;base64,${base64}`,
+        }),
+      });
+
+      if (response.ok) {
+        await fetchMainPhoto();
+        Alert.alert('Başarılı', 'Ana fotoğraf güncellendi!');
+      } else {
+        Alert.alert('Hata', 'Fotoğraf güncellenemedi.');
+      }
+    } catch (error) {
+      console.error('Error updating main photo:', error);
+      Alert.alert('Hata', 'Fotoğraf güncellenirken bir hata oluştu.');
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  // Change main photo
+  const changeMainPhoto = async () => {
+    Alert.alert(
+      'Ana Fotoğrafı Değiştir',
+      'Nereden fotoğraf seçmek istersiniz?',
+      [
+        { text: 'İptal', style: 'cancel' },
+        {
+          text: 'Galeri',
+          onPress: async () => {
+            const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+            if (status !== 'granted') {
+              Alert.alert('İzin Gerekli', 'Galeri erişim izni gereklidir.');
+              return;
+            }
+            const result = await ImagePicker.launchImageLibraryAsync({
+              mediaTypes: ImagePicker.MediaTypeOptions.Images,
+              allowsEditing: true,
+              aspect: [4, 3],
+              quality: 0.7,
+              base64: true,
+            });
+            if (!result.canceled && result.assets[0].base64) {
+              await updateMainPhoto(result.assets[0].base64);
+            }
+          },
+        },
+        {
+          text: 'Kamera',
+          onPress: async () => {
+            const { status } = await ImagePicker.requestCameraPermissionsAsync();
+            if (status !== 'granted') {
+              Alert.alert('İzin Gerekli', 'Kamera erişim izni gereklidir.');
+              return;
+            }
+            const result = await ImagePicker.launchCameraAsync({
+              allowsEditing: true,
+              aspect: [4, 3],
+              quality: 0.7,
+              base64: true,
+            });
+            if (!result.canceled && result.assets[0].base64) {
+              await updateMainPhoto(result.assets[0].base64);
+            }
+          },
+        },
+      ]
+    );
+  };
+
   // Show image picker options
   const showImageOptions = () => {
     Alert.alert(
