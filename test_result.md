@@ -107,63 +107,78 @@ user_problem_statement: "25 Ocak 2025 saat 20:30'dan itibaren kız arkadaşımla
 backend:
   - task: "Get relationship start date API"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "GET /api/start-date endpoint implemented. Returns default date 2025-01-25T20:30:00+03:00"
+      - working: true
+        agent: "testing"
+        comment: "✅ TESTED: GET /api/start-date correctly returns default date 2025-01-25T20:30:00+03:00. API working perfectly."
   
   - task: "Set relationship start date API"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "medium"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "POST /api/start-date endpoint implemented. Allows updating start date"
+      - working: true
+        agent: "testing"
+        comment: "✅ TESTED: POST /api/start-date successfully updates start date and persists changes. Verified with GET request. API working perfectly."
   
   - task: "Upload photo API"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "POST /api/photos endpoint implemented. Accepts base64 encoded images"
+      - working: true
+        agent: "testing"
+        comment: "✅ TESTED: POST /api/photos successfully uploads base64 images, returns proper response with id, image_base64, and uploaded_at fields. MongoDB ObjectId handling works correctly."
   
   - task: "Get all photos API"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "GET /api/photos endpoint implemented. Returns all photos sorted by upload date"
+      - working: true
+        agent: "testing"
+        comment: "✅ TESTED: GET /api/photos returns array of photos with correct structure (id, image_base64, uploaded_at). Sorting by upload date works correctly."
   
   - task: "Delete photo API"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "DELETE /api/photos/{photo_id} endpoint implemented"
+      - working: true
+        agent: "testing"
+        comment: "✅ TESTED: DELETE /api/photos/{photo_id} successfully deletes photos and removes them from database. Core functionality works perfectly. Minor: Returns HTTP 400 instead of 404 for non-existent photos, but error message is correct."
 
 frontend:
   - task: "Display time counter"
