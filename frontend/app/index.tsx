@@ -548,13 +548,12 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   counterContainer: {
-    paddingHorizontal: 20,
-    paddingTop: 8,
+    marginTop: 10,
   },
   counterCard: {
     backgroundColor: 'rgba(255, 255, 255, 0.1)',
     borderRadius: 12,
-    padding: 20,
+    padding: 16,
     flexDirection: 'row',
     justifyContent: 'space-around',
     flexWrap: 'wrap',
@@ -564,18 +563,24 @@ const styles = StyleSheet.create({
   timeBlock: {
     alignItems: 'center',
     minWidth: 60,
-    marginVertical: 8,
+    marginVertical: 6,
   },
   timeNumber: {
-    fontSize: 28,
+    fontSize: 24,
     fontWeight: '700',
     color: '#FFF',
-    marginBottom: 4,
+    marginBottom: 2,
   },
   timeLabel: {
-    fontSize: 12,
+    fontSize: 11,
     color: '#e0e0e0',
     textTransform: 'capitalize',
+  },
+  startDateText: {
+    fontSize: 11,
+    color: '#999',
+    textAlign: 'center',
+    marginTop: 12,
   },
   photosSection: {
     paddingHorizontal: 20,
