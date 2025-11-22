@@ -427,12 +427,12 @@ const styles = StyleSheet.create({
   timeNumber: {
     fontSize: 28,
     fontWeight: '700',
-    color: '#2c3e50',
+    color: '#FFF',
     marginBottom: 4,
   },
   timeLabel: {
     fontSize: 12,
-    color: '#7f8c8d',
+    color: '#e0e0e0',
     textTransform: 'capitalize',
   },
   photosSection: {
