@@ -245,14 +245,11 @@ export default function Index() {
     );
   }
 
-  // Calculate total days
-  const totalDays = Math.floor((new Date().getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
-
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
       
-      {/* Compact Header */}
+      {/* Simple Header */}
       <View style={styles.header}>
         <Text style={styles.appName}>Sevgi Saati</Text>
         <Text style={styles.subtitle}>25 Ocak 2025, 20:30</Text>
@@ -263,33 +260,21 @@ export default function Index() {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {/* Total Days Display */}
-        <View style={styles.totalDaysContainer}>
-          <Ionicons name="heart" size={32} color="#FF1493" />
-          <Text style={styles.totalDaysNumber}>{totalDays}</Text>
-          <Text style={styles.totalDaysLabel}>Gün Birlikte</Text>
+        {/* Couple Photo */}
+        <View style={styles.photoContainer}>
+          <Image
+            source={{ uri: 'https://customer-assets.emergentagent.com/job_e4db3706-e757-48e7-9549-6099030dfeac/artifacts/j9t0hd5t_20250920_205107.jpg' }}
+            style={styles.couplePhoto}
+            resizeMode="cover"
+          />
         </View>
 
-        {/* Compact Time Counter */}
+        {/* Time Counter - Order: Minute, Hour, Day, Month, Year */}
         <View style={styles.counterContainer}>
           <View style={styles.counterCard}>
-            {timeElapsed.years > 0 && (
-              <View style={styles.timeBlock}>
-                <Text style={styles.timeNumber}>{timeElapsed.years}</Text>
-                <Text style={styles.timeLabel}>Yıl</Text>
-              </View>
-            )}
-            
-            {(timeElapsed.years > 0 || timeElapsed.months > 0) && (
-              <View style={styles.timeBlock}>
-                <Text style={styles.timeNumber}>{timeElapsed.months}</Text>
-                <Text style={styles.timeLabel}>Ay</Text>
-              </View>
-            )}
-            
             <View style={styles.timeBlock}>
-              <Text style={styles.timeNumber}>{timeElapsed.days}</Text>
-              <Text style={styles.timeLabel}>Gün</Text>
+              <Text style={styles.timeNumber}>{timeElapsed.minutes}</Text>
+              <Text style={styles.timeLabel}>Dakika</Text>
             </View>
             
             <View style={styles.timeBlock}>
@@ -298,9 +283,23 @@ export default function Index() {
             </View>
             
             <View style={styles.timeBlock}>
-              <Text style={styles.timeNumber}>{timeElapsed.minutes}</Text>
-              <Text style={styles.timeLabel}>Dakika</Text>
+              <Text style={styles.timeNumber}>{timeElapsed.days}</Text>
+              <Text style={styles.timeLabel}>Gün</Text>
             </View>
+            
+            {(timeElapsed.years > 0 || timeElapsed.months > 0) && (
+              <View style={styles.timeBlock}>
+                <Text style={styles.timeNumber}>{timeElapsed.months}</Text>
+                <Text style={styles.timeLabel}>Ay</Text>
+              </View>
+            )}
+            
+            {timeElapsed.years > 0 && (
+              <View style={styles.timeBlock}>
+                <Text style={styles.timeNumber}>{timeElapsed.years}</Text>
+                <Text style={styles.timeLabel}>Yıl</Text>
+              </View>
+            )}
           </View>
         </View>
 
