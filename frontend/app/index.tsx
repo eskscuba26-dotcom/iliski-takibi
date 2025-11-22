@@ -148,6 +148,13 @@ export default function Index() {
     }
     lastHourRef.current = currentTotalHours;
 
+    // Check if day changed and show message on screen
+    const currentTotalDays = Math.floor((now.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
+    if (lastDayRef.current !== -1 && currentTotalDays > lastDayRef.current) {
+      showDailyMessage();
+    }
+    lastDayRef.current = currentTotalDays;
+
     setTimeElapsed({
       years: years < 0 ? 0 : years,
       months: months < 0 ? 0 : months,
