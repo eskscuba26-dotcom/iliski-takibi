@@ -448,7 +448,7 @@ const styles = StyleSheet.create({
   photosTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#2c3e50',
+    color: '#FFF',
   },
   addButton: {
     width: 44,
