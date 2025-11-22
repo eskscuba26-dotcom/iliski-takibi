@@ -92,6 +92,19 @@ export default function Index() {
     return () => clearInterval(interval);
   }, []);
 
+  // Fetch main photo
+  const fetchMainPhoto = async () => {
+    try {
+      const response = await fetch(`${EXPO_PUBLIC_BACKEND_URL}/api/main-photo`);
+      if (response.ok) {
+        const data = await response.json();
+        setMainPhoto(data.main_photo);
+      }
+    } catch (error) {
+      console.error('Error fetching main photo:', error);
+    }
+  };
+
   // Fetch photos
   const fetchPhotos = async () => {
     try {
@@ -108,6 +121,7 @@ export default function Index() {
   };
 
   useEffect(() => {
+    fetchMainPhoto();
     fetchPhotos();
   }, []);
 
