@@ -28,6 +28,7 @@ export default function Index() {
   const [photos, setPhotos] = useState<Photo[]>([]);
   const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
+  const [mainPhoto, setMainPhoto] = useState<string>('');
   const [timeElapsed, setTimeElapsed] = useState({
     years: 0,
     months: 0,
