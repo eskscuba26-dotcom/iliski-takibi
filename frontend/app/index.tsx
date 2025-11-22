@@ -469,12 +469,12 @@ const styles = StyleSheet.create({
   },
   emptyText: {
     fontSize: 16,
-    color: '#7f8c8d',
+    color: '#e0e0e0',
     marginTop: 16,
   },
   emptySubtext: {
     fontSize: 14,
-    color: '#95a5a6',
+    color: '#bbb',
     marginTop: 8,
     textAlign: 'center',
   },
