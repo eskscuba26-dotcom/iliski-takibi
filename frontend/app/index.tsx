@@ -42,34 +42,42 @@ export default function Index() {
   // Calculate time elapsed
   const calculateTimeElapsed = () => {
     const now = new Date();
-    const diffMs = now.getTime() - startDate.getTime();
+    
+    // Calculate total difference
+    let years = now.getFullYear() - startDate.getFullYear();
+    let months = now.getMonth() - startDate.getMonth();
+    let days = now.getDate() - startDate.getDate();
+    let hours = now.getHours() - startDate.getHours();
+    let minutes = now.getMinutes() - startDate.getMinutes();
 
-    const minutes = Math.floor(diffMs / (1000 * 60));
-    const hours = Math.floor(diffMs / (1000 * 60 * 60));
-    const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-
-    // Calculate years, months, days more accurately
-    let years = 0;
-    let months = 0;
-    let remainingDays = days;
-
-    // Simple year calculation (365 days)
-    years = Math.floor(remainingDays / 365);
-    remainingDays = remainingDays % 365;
-
-    // Simple month calculation (30 days average)
-    months = Math.floor(remainingDays / 30);
-    remainingDays = remainingDays % 30;
-
-    const currentHours = hours % 24;
-    const currentMinutes = minutes % 60;
+    // Adjust for negative values
+    if (minutes < 0) {
+      minutes += 60;
+      hours -= 1;
+    }
+    
+    if (hours < 0) {
+      hours += 24;
+      days -= 1;
+    }
+    
+    if (days < 0) {
+      const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+      days += prevMonth.getDate();
+      months -= 1;
+    }
+    
+    if (months < 0) {
+      months += 12;
+      years -= 1;
+    }
 
     setTimeElapsed({
-      years,
-      months,
-      days: remainingDays,
-      hours: currentHours,
-      minutes: currentMinutes,
+      years: years < 0 ? 0 : years,
+      months: months < 0 ? 0 : months,
+      days: days < 0 ? 0 : days,
+      hours: hours < 0 ? 0 : hours,
+      minutes: minutes < 0 ? 0 : minutes,
     });
   };
 
