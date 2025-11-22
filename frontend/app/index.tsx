@@ -355,111 +355,59 @@ export default function Index() {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {/* Compact Time Counter with Photo and Add Button */}
-        <View style={styles.counterContainer}>
-          <View style={styles.counterCard}>
-            {/* Left Side - Small Photo */}
-            <TouchableOpacity
-              style={styles.smallPhotoSection}
-              onPress={changeMainPhoto}
-              disabled={uploading}
-            >
-              {mainPhoto ? (
-                <Image
-                  source={{ uri: mainPhoto }}
-                  style={styles.smallPhoto}
-                  resizeMode="cover"
-                />
-              ) : (
-                <View style={styles.smallPhotoPlaceholder}>
-                  <Ionicons name="camera" size={16} color="#999" />
-                </View>
-              )}
-            </TouchableOpacity>
+        {/* Widget Style - Photo, Time, Add Button */}
+        <View style={styles.widgetContainer}>
+          {/* Left - Photo */}
+          <TouchableOpacity
+            style={styles.widgetPhoto}
+            onPress={changeMainPhoto}
+            disabled={uploading}
+          >
+            {mainPhoto ? (
+              <Image
+                source={{ uri: mainPhoto }}
+                style={styles.widgetPhotoImage}
+                resizeMode="cover"
+              />
+            ) : (
+              <View style={styles.widgetPhotoPlaceholder}>
+                <Ionicons name="camera" size={24} color="#666" />
+              </View>
+            )}
+          </TouchableOpacity>
 
-            {/* Time Blocks */}
-            <View style={styles.timeBlock}>
-              <Text style={styles.timeNumber}>{timeElapsed.minutes}</Text>
-              <Text style={styles.timeLabel}>Dakika</Text>
+          {/* Center - Time Display (Vertical) */}
+          <View style={styles.widgetTimeContainer}>
+            <View style={styles.widgetTimeRow}>
+              <Text style={styles.widgetTimeNumber}>{timeElapsed.minutes}</Text>
+              <Text style={styles.widgetTimeLabel}>Dakika</Text>
             </View>
-            
-            <View style={styles.timeBlock}>
-              <Text style={styles.timeNumber}>{timeElapsed.hours}</Text>
-              <Text style={styles.timeLabel}>Saat</Text>
+            <View style={styles.widgetTimeRow}>
+              <Text style={styles.widgetTimeNumber}>{timeElapsed.hours}</Text>
+              <Text style={styles.widgetTimeLabel}>Saat</Text>
             </View>
-            
-            <View style={styles.timeBlock}>
-              <Text style={styles.timeNumber}>{timeElapsed.days}</Text>
-              <Text style={styles.timeLabel}>Gün</Text>
-            </View>
-            
-            <View style={styles.timeBlock}>
-              <Text style={styles.timeNumber}>
+            <View style={styles.widgetTimeRow}>
+              <Text style={styles.widgetTimeNumber}>
                 {timeElapsed.years > 0 ? timeElapsed.years : timeElapsed.months}
               </Text>
-              <Text style={styles.timeLabel}>
+              <Text style={styles.widgetTimeLabel}>
                 {timeElapsed.years > 0 ? 'Yıl' : 'Ay'}
               </Text>
             </View>
-
-            {/* Right Side - Add Button */}
-            <TouchableOpacity
-              style={styles.smallAddButton}
-              onPress={showImageOptions}
-              disabled={uploading}
-            >
-              {uploading ? (
-                <ActivityIndicator size="small" color="#FFF" />
-              ) : (
-                <Ionicons name="add" size={24} color="#FFF" />
-              )}
-            </TouchableOpacity>
-          </View>
-          <Text style={styles.startDateText}>25 Ocak 2025, 20:30</Text>
-        </View>
-
-        {/* Photos Section */}
-        <View style={styles.photosSection}>
-          <View style={styles.photosSectionHeader}>
-            <Text style={styles.photosTitle}>Anılarımız</Text>
-            <TouchableOpacity
-              style={styles.addButton}
-              onPress={showImageOptions}
-              disabled={uploading}
-            >
-              {uploading ? (
-                <ActivityIndicator size="small" color="#FFF" />
-              ) : (
-                <Ionicons name="add" size={24} color="#FFF" />
-              )}
-            </TouchableOpacity>
           </View>
 
-          {photos.length === 0 ? (
-            <View style={styles.emptyState}>
-              <Ionicons name="images-outline" size={64} color="#999" />
-              <Text style={styles.emptyText}>Henüz fotoğraf eklenmemiş</Text>
-              <Text style={styles.emptySubtext}>
-                Anılarınızı eklemek için + butonuna tıklayın
-              </Text>
-            </View>
-          ) : (
-            <View style={styles.photosGrid}>
-              {photos.map((photo) => (
-                <TouchableOpacity
-                  key={photo.id}
-                  style={styles.photoCard}
-                  onLongPress={() => deletePhoto(photo.id)}
-                >
-                  <Image
-                    source={{ uri: photo.image_base64 }}
-                    style={styles.photoImage}
-                    resizeMode="cover"
-                  />
-                </TouchableOpacity>
-              ))}
-            </View>
-          )}
+          {/* Right - Add Button */}
+          <TouchableOpacity
+            style={styles.widgetAddButton}
+            onPress={showImageOptions}
+            disabled={uploading}
+          >
+            {uploading ? (
+              <ActivityIndicator size="large" color="#FFF" />
+            ) : (
+              <Ionicons name="add" size={40} color="#FFF" />
+            )}
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </View>
